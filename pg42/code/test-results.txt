@@ -1,0 +1,22 @@
+🚀 Résumé du test complet
+
+✅ Utilisation du compte déployeur : 0x3794e29d7Fb16319b169Ee4ED52Dfc6F2b090E15
+✅ Utilisation du contrat PG42 : 0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd
+💰 Solde initial du déployeur : 999825.0 PG42
+✅ Transfert de 10 PG42 vers 0x665eF53f3E0e39555C1905aD07Ca0dd4477e5A75 effectué avec succès !
+💰 Nouveau solde du destinataire : 185.0 PG42
+✅ Récompense de 5 PG42 attribuée à 0x665eF53f3E0e39555C1905aD07Ca0dd4477e5A75
+🔍 Vérification du contrat PG42 sur BscScan : https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd
+
+🚀 Test du MultiSigWallet...
+✅ Utilisation du MultiSigWallet : 0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A
+✅ Dépôt de 0.01 BNB effectué dans le MultiSig
+💰 Solde actuel du MultiSig : 0.07 BNB
+✅ Transaction MultiSig soumise avec ID : 9
+✅ Transaction confirmée avec succès !
+📌 Transaction confirmée par 0x3794e29d7Fb16319b169Ee4ED52Dfc6F2b090E15 ? true
+✅ Transaction MultiSig exécutée avec succès !
+
+✅ Résumé des vérifications à effectuer :
+🔗 PG42 sur BscScan : https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd
+🔗 MultiSigWallet sur BscScan : https://testnet.bscscan.com/address/0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A
