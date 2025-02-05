@@ -9,10 +9,8 @@ describe("MultiSigWallet", function () {
   const sendAmount = ethers.parseUnits("0.01", "ether");
 
   beforeEach(async function () {
-    // Récupère les signers
     [owner1, owner2, nonOwner, recipient] = await ethers.getSigners();
 
-    // Déploie le MultiSigWallet avec 2 propriétaires et 1 confirmation requise
     const MultiSigWallet = await ethers.getContractFactory("MultiSigWallet");
     multiSigWallet = await MultiSigWallet.deploy([owner1.address, owner2.address], 1);
     await multiSigWallet.waitForDeployment();
@@ -27,13 +25,11 @@ describe("MultiSigWallet", function () {
   it("✅ Dépôt de fonds dans le multisig", async function () {
     const depositAmount = ethers.parseUnits("0.02", "ether");
 
-    // Effectue un dépôt
     await owner1.sendTransaction({
       to: await multiSigWallet.getAddress(),
       value: depositAmount,
     });
 
-    // Vérifie le solde du multisig
     const balance = await ethers.provider.getBalance(await multiSigWallet.getAddress());
     expect(balance).to.equal(depositAmount);
   });
@@ -60,30 +56,23 @@ describe("MultiSigWallet", function () {
   });
 
   it("✅ Exécution d'une transaction après confirmation suffisante", async function () {
-    // Dépôt initial de fonds dans le multisig
     await owner1.sendTransaction({
       to: await multiSigWallet.getAddress(),
       value: sendAmount,
     });
 
-    // Soumission de la transaction
     await multiSigWallet.submitTransaction(recipient.address, sendAmount, "0x");
 
-    // Confirmation de la transaction par un propriétaire
     await multiSigWallet.connect(owner1).confirmTransaction(0);
 
-    // Vérification que la transaction est bien enregistrée
     const txnBefore = await multiSigWallet.transactions(0);
     expect(txnBefore.executed).to.be.false;
 
-    // Exécution de la transaction
     await (await multiSigWallet.connect(owner1).executeTransaction(0)).wait();
 
-    // Vérification que la transaction a bien été exécutée
     const txnAfter = await multiSigWallet.transactions(0);
     expect(txnAfter.executed).to.be.true;
 
-    // Vérification que le solde du multisig a bien diminué
     const balanceAfter = await ethers.provider.getBalance(await multiSigWallet.getAddress());
     expect(balanceAfter).to.equal(0);
   });
@@ -98,7 +87,8 @@ describe("MultiSigWallet", function () {
     await multiSigWallet.submitTransaction(recipient.address, sendAmount, "0x");
 
     await expect(
-        multiSigWallet.connect(owner1).executeTransaction(0)
-      ).to.be.revertedWith("Transaction not confirmed");      
+      multiSigWallet.connect(owner1).executeTransaction(0)
+    ).to.be.revertedWith("Not enough confirmations");
+
   });
 });

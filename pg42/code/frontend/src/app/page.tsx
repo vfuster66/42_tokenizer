@@ -1,6 +1,8 @@
 'use client';
 
-import TokenInterface from '@/components/ui/Token';
+import dynamic from "next/dynamic";
+
+const TokenInterface = dynamic(() => import("@/components/ui/Token"), { ssr: false });
 
 export default function Home() {
   return (

@@ -210,9 +210,9 @@ pnpm hardhat run scripts/full-test.ts --network bscTestnet
 ## 📌 Sécurité et Vérification
 
 - ✅ **Adresse du contrat PG42** : `0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd`
-- ✅ **Adresse du MultiSigWallet** : `0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A`
+- ✅ **Adresse du MultiSigWallet** : `0xE7Af61dCd1600bc7b4fFd632b61529388B729604`
 - ✅ **Contrat vérifié sur BscScan** : [Voir sur BscScan](https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd#code)
-- **MultiSigWallet vérifié sur BscScan** : [MultiSigWallet sur BscScan](https://testnet.bscscan.com/address/0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A#code)
+- **MultiSigWallet vérifié sur BscScan** : [MultiSigWallet sur BscScan](https://testnet.bscscan.com/address/0xE7Af61dCd1600bc7b4fFd632b61529388B729604#code)
 
 - ✅ **Contrat restreint à l’owner** : Seul l’owner peut utiliser `reward()`.
 - ✅ **Utilisation des standards OpenZeppelin** : `ERC-20` et `Ownable` pour plus de sécurité.

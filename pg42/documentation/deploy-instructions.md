@@ -78,7 +78,7 @@ pnpm hardhat run scripts/deploy-multisig.ts --network bscTestnet
 Si le déploiement est réussi, vous verrez :
 ```bash
 🚀 Déploiement du MultiSigWallet en cours...
-✅ MultiSigWallet déployé à l'adresse : 0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A
+✅ MultiSigWallet déployé à l'adresse : 0xE7Af61dCd1600bc7b4fFd632b61529388B729604
 ```
 
 📌 Notez ces adresses et ajoutez-les dans `.env`
@@ -128,7 +128,7 @@ Si tout fonctionne, vous verrez :
 ✅ Transaction exécutée avec succès !
 ✅ Résumé des vérifications :
 🔗 PG42 sur BscScan : https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd
-🔗 MultiSigWallet sur BscScan : https://testnet.bscscan.com/address/0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A
+🔗 MultiSigWallet sur BscScan : https://testnet.bscscan.com/address/0xE7Af61dCd1600bc7b4fFd632b61529388B729604
 ```
 
 ---
@@ -144,7 +144,7 @@ pnpm hardhat verify --network bscTestnet 0xBEaaBEbFf537ea950C3998150C72b7546B10F
 
 - Pour le MultiSigWallet :
 ```bash
-pnpm hardhat verify --network bscTestnet 0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A
+pnpm hardhat verify --network bscTestnet 0xE7Af61dCd1600bc7b4fFd632b61529388B729604
 ```
 
 Si la vérification est réussie, vous verrez :
@@ -153,6 +153,6 @@ Successfully verified contract PG42 on the block explorer.
 https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd#code
 
 Successfully verified contract MultiSigWallet on the block explorer.
-https://testnet.bscscan.com/address/0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A#code
+https://testnet.bscscan.com/address/0xE7Af61dCd1600bc7b4fFd632b61529388B729604#code
 ```
 

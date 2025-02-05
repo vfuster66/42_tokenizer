@@ -112,7 +112,7 @@ pnpm hardhat console --network bscTestnet
 ```js
 const deployer = await ethers.getSigner();
 await deployer.sendTransaction({
-    to: "0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A", // Adresse du MultiSigWallet
+    to: "0xE7Af61dCd1600bc7b4fFd632b61529388B729604", // Adresse du MultiSigWallet
     value: ethers.parseUnits("0.01", "ether") // Montant en BNB
 });
 ```
@@ -128,7 +128,7 @@ Vous pouvez suivre toutes vos transactions sur BscScan Testnet.
 - PG42 sur BscScan :
     📌 [Voir le contrat](https://testnet.bscscan.com/address/0xBEaaBEbFf537ea950C3998150C72b7546B10F6bd#code)
 - MultiSigWallet sur BscScan :
-    📌 [Voir le contrat](https://testnet.bscscan.com/address/0x72cfC41c3FCA17cC1B1Aa351fF2236339AdD3b2A#code)
+    📌 [Voir le contrat](https://testnet.bscscan.com/address/0xE7Af61dCd1600bc7b4fFd632b61529388B729604#code)
 
 🔍 Pour voir une transaction spécifique :
 

@@ -14,6 +14,7 @@ contract MultiSigWallet {
         uint256 value;
         bytes data;
         bool executed;
+        uint256 numConfirmations;
     }
 
     event Submission(uint256 indexed transactionId);
@@ -32,8 +33,13 @@ contract MultiSigWallet {
         _;
     }
 
-    modifier confirmed(uint256 transactionId, address owner) {
-        require(confirmations[transactionId][owner], "Transaction not confirmed");
+    modifier notExecuted(uint256 transactionId) {
+        require(!transactions[transactionId].executed, "Transaction already executed");
+        _;
+    }
+
+    modifier notConfirmed(uint256 transactionId, address owner) {
+        require(!confirmations[transactionId][owner], "Transaction already confirmed");
         _;
     }
 
@@ -62,33 +68,25 @@ contract MultiSigWallet {
         public onlyOwner returns (uint256) 
     {
         uint256 transactionId = transactionCount++;
-        transactions[transactionId] = Transaction(destination, value, data, false);
+        transactions[transactionId] = Transaction(destination, value, data, false, 0);
         emit Submission(transactionId);
         return transactionId;
     }
 
     function confirmTransaction(uint256 transactionId) 
-        public onlyOwner transactionExists(transactionId) 
+        public onlyOwner transactionExists(transactionId) notExecuted(transactionId) notConfirmed(transactionId, msg.sender) 
     {
         confirmations[transactionId][msg.sender] = true;
+        transactions[transactionId].numConfirmations += 1;
         emit Confirmation(msg.sender, transactionId);
     }
 
     function executeTransaction(uint256 transactionId) 
-        public onlyOwner transactionExists(transactionId) confirmed(transactionId, msg.sender) 
+        public onlyOwner transactionExists(transactionId) notExecuted(transactionId) 
     {
         Transaction storage txn = transactions[transactionId];
 
-        require(!txn.executed, "Transaction already executed");
-
-        uint256 count = 0;
-        for (uint256 i = 0; i < owners.length; i++) {
-            if (confirmations[transactionId][owners[i]]) {
-                count += 1;
-            }
-        }
-
-        require(count >= required, "Not enough confirmations");
+        require(txn.numConfirmations >= required, "Not enough confirmations");
 
         txn.executed = true;
         (bool success,) = txn.destination.call{value: txn.value}(txn.data);
@@ -100,7 +98,6 @@ contract MultiSigWallet {
         }
     }
 
-    // Permet au multisig de recevoir des BNB
     receive() external payable {
         emit Deposit(msg.sender, msg.value);
     }
